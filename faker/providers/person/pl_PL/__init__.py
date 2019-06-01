@@ -735,7 +735,7 @@ class Provider(PersonProvider):
             pesel_sex = (pesel_sex + 1) % 10
 
         pesel = '{date}{core}{sex}'.format(date=pesel_date, core=pesel_core, sex=pesel_sex)
-        pesel += str(self.pesel_compute_check_digit(list(map(int, pesel))))
+        pesel += str(self.pesel_compute_check_digit(list(map(int, list(pesel)))))
 
         return pesel
 

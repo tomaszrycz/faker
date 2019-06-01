@@ -728,14 +728,14 @@ class Provider(PersonProvider):
             month=date_of_birth.month if date_of_birth.year < 2000 else date_of_birth.month + 20)
         pesel_date = pesel_date[2:]
 
-        pesel_core = ''.join(list(map(str, [self.random_digit() for _ in range(3)])))
+        pesel_core = ''.join(map(str, (self.random_digit() for _ in range(3))))
         pesel_sex = self.random_digit()
 
         if (sex == 'M' and pesel_sex % 2 == 0) or (sex == 'F' and pesel_sex % 2 == 1):
             pesel_sex = (pesel_sex + 1) % 10
 
         pesel = '{date}{core}{sex}'.format(date=pesel_date, core=pesel_core, sex=pesel_sex)
-        pesel += str(self.pesel_compute_check_digit(pesel))
+        pesel += str(self.pesel_compute_check_digit(list(map(int, pesel))))
 
         return pesel
 

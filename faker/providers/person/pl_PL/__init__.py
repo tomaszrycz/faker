@@ -706,7 +706,7 @@ class Provider(PersonProvider):
     @staticmethod
     def pesel_compute_check_digit(pesel):
         checksum_values = [9, 7, 3, 1, 9, 7, 3, 1, 9, 7]
-        return sum(int(a) * b for a, b in zip(list(pesel), checksum_values)) % 10
+        return sum((int(a) * b for a, b in zip(pesel, checksum_values))) % 10
 
     def pesel(self, date_of_birth=None, sex=None):
         """

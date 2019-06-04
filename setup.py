@@ -67,7 +67,7 @@ setup(
         "python-dateutil>=2.4",
         "six>=1.10",
         "text-unidecode==1.2",
-        "importlib-metadata==0.16",
+        "importlib-metadata==0.14",
     ],
     tests_require=[
         "validators>=0.13.0",

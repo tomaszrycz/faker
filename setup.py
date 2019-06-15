@@ -16,14 +16,15 @@ with io.open(os.path.join(here, 'VERSION')) as version_file:
 
 # this module can be zip-safe if the zipimporter implements iter_modules or if
 # pkgutil.iter_importer_modules has registered a dispatch for the zipimporter.
-# try:
-#     import pkgutil
-#     import zipimport
-#     zip_safe = hasattr(zipimport.zipimporter, "iter_modules") or \
-#         zipimport.zipimporter in pkgutil.iter_importer_modules.registry.keys()
-# except (ImportError, AttributeError):
+try:
+    import pkgutil
+    import zipimport
+    zip_safe = hasattr(zipimport.zipimporter, "iter_modules") or \
+        zipimport.zipimporter in pkgutil.iter_importer_modules.registry.keys()
+except (ImportError, AttributeError):
+    zip_safe = False
 
-zip_safe = False
+print(zip_safe)
 
 setup(
     name='Faker',
